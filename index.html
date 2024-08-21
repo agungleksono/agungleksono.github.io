@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!! :)</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="myAudio" src="assets/lover.mp3"></audio>
+    <audio id="myAudio2" src="assets/favorite-girl.mp3"></audio>
+    <img src="assets/cat.gif" id="cat" alt="" hidden>
+    <img src="assets/cat.gif" id="cat2" alt="" hidden>
+
+    <div id="birthday-cont">
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div id="countdown-container" class="col-10 col-md-4 py-4">
+                <div class="d-flex justify-content-evenly">
+                    <div id="days" class="bg-white p-2 detail-countdown">00</div>
+                    <div id="hours" class="bg-white p-2 detail-countdown">00</div>
+                    <div id="minutes" class="bg-white p-2 detail-countdown">00</div>
+                    <div id="seconds" class="bg-white p-2 detail-countdown">00</div>
+                </div>
+            </div>
+            <!-- <img id="birthday-cake" class="bg-danger" src="assets/birthday.gif" data-aos="zoom-in" alt="" hidden>
+            <div class="row">
+                <button class="bg-info">as</button>
+            </div> -->
+        </div>
+    </div>
+
+    <div id="container" class="d-flex flex-column justify-content-center align-items-center vh-100">
+        <img id="birthday-cake" class="" src="assets/birthday.gif" data-aos="zoom-in" alt="" hidden>
+        <button type="button" id="btn1" class="btn btn-info btn-sm mt-3">Click here if u love me babyy :)</button>
+    </div>
+
+    <!-- <div id="envelope" class="d-flex justify-content-center align-items-center vh-100" hidden>
+        <img id="" class="" src="assets/envelope.gif" data-aos="zoom-in" alt="" hidden>
+    </div> -->
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script>
+        AOS.init();
+
+        const targetedDate = new Date('Aug 22, 2024 00:00:00');
+        const now = new Date().getTime();
+        
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+
+        const countdownElement = document.getElementById('countdown-container');
+        const cat1 = document.getElementById('cat');
+        const cat2 = document.getElementById('cat2');
+        const birthdayCake = document.getElementById('birthday-cake');
+        const birthdayCont = document.getElementById('birthday-cont');
+        
+        if (targetedDate - now < 0) {
+            afterDate();
+        } else {
+            const countdown = setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = targetedDate - now;
+    
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(timeLeft % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+                const minutes = Math.floor(timeLeft % (1000 * 60 * 60) / (1000 * 60));
+                const seconds = Math.floor(timeLeft % (1000 * 60) / 1000);
+    
+                daysElement.innerHTML = formatNumber(days);
+                hoursElement.innerHTML = formatNumber(hours);
+                minutesElement.innerHTML = formatNumber(minutes);
+                secondsElement.innerHTML = formatNumber(seconds);
+    
+                if (timeLeft < 0) {
+                    clearInterval(countdown);
+                    afterDate();
+                }
+            }, 1000);
+        }
+
+        function afterDate() {
+            // const countdownElement = document.getElementById('countdown-container');
+            // const cat1 = document.getElementById('cat');
+            // const cat2 = document.getElementById('cat2');
+            // const birthdayCake = document.getElementById('birthday-cake');
+            // const birthdayCont = document.getElementById('birthday-cont');
+
+            birthdayCont.setAttribute('hidden', true)
+            countdownElement.setAttribute('hidden', true)
+            cat1.removeAttribute('hidden');
+            cat2.removeAttribute('hidden');
+            birthdayCake.removeAttribute('hidden');
+        }
+
+        const btn1 = document.getElementById('btn1');
+        const container = document.getElementById('container');
+
+        btn1.addEventListener('click', () => {
+            cat1.setAttribute('hidden', true)
+            cat2.setAttribute('hidden', true)
+            document.getElementById('myAudio').play()
+
+            container.innerHTML = `
+                <p>Wowww ada amplop ayangg...</p>
+                <p>Click the envelope babyyyyyy.....</p>
+                <img id="envelope" class="" src="assets/envelope.gif" data-aos="flip-left" alt="">
+            `
+        })
+
+        container.addEventListener('click', (event) => {
+            if (event.target && event.target.id === 'envelope') {
+                container.innerHTML = `
+                    <h4 id="text1" class="text-center" data-aos="fade-up">Haloo Sayangg... Today is your dayy babyyyy... :)</h4>
+                `
+            }
+            if (event.target && event.target.id === 'text1') {
+                container.innerHTML = `
+                    <h5 id="text2" class="text-center" data-aos="fade-up">Dari sekian banyak orang yang akan mengucapkan ulang tahun kepadamu, aku ingin menjadi yang berbeda dan spesial.</h5>
+                `
+            }
+            if (event.target && event.target.id === 'text2') {
+                container.innerHTML = `
+                    <h5 id="text3" class="text-center" data-aos="fade-up">Selamat ulang tahun untuk orang spesial yg membawa begitu banyak kebahagiaan di hidup aku. <br>Aku banggaaaaa banget sama ayanggg... <br>Ayang teruss berjuangg yaaa buat dapetin yang ayang pengen, ayang ndaboleh nyerahhh. </h5>
+                `
+            }
+            if (event.target && event.target.id === 'text3') {
+                container.innerHTML = `
+                    <h5 id="text4" class="text-center" data-aos="fade-up">Ingett ada aku disini yg selalu ada buat ayang. Kalo ayang capeee kerjaa, kuliahh... masih ada pundak aku yg selalu menunggu ayangg hihihi. </h5>
+                `
+            }
+            if (event.target && event.target.id === 'text4') {
+                container.innerHTML = `
+                    <h5 id="text5" class="text-center" data-aos="fade-up"> Aku bersyukur banget untuk setiap momen yg kita lewati bersama. And I hope our happiness is everlasting </h5>
+                `
+            }
+            if (event.target && event.target.id === 'text5') {
+                container.innerHTML = `
+                    <h5 id="text6" class="text-center" data-aos="fade-up"> Ayangggg... you're being my favorite girllll <3 </h5>
+                `
+            }
+            if (event.target && event.target.id === 'text6') {
+                document.getElementById('myAudio').pause()
+                var favoriteGirl = document.getElementById('myAudio2')
+                favoriteGirl.currentTime = 5
+                favoriteGirl.play()
+                container.innerHTML = `
+                    <img id="elia1" class="img-thumbnail" src="assets/elia1.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text7" class="text-center" data-aos="fade-up"> AND HERE IS MY FAVORITE GIRLL <br> ututututu cantik bangett ci ayangggg acuu :* </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia1' || event.target && event.target.id === 'text7') {
+                container.innerHTML = `
+                    <img id="elia2" class="img-thumbnail" src="assets/elia3.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text8" class="text-center" data-aos="fade-up"> ayang gumuy lg mainan boneka tuuu :* </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia2' || event.target && event.target.id === 'text8') {
+                container.innerHTML = `
+                    <img id="elia3" class="img-thumbnail" src="assets/elia2.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text9" class="text-center" data-aos="fade-up"> ayang cutee bangettttt </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia3' || event.target && event.target.id === 'text9') {
+                container.innerHTML = `
+                    <img id="elia4" class="img-thumbnail" src="assets/elia4.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text10" class="text-center" data-aos="fade-up"> AYANGG GUMUYYYY MAKCIMALLLL ;)) </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia4' || event.target && event.target.id === 'text10') {
+                container.innerHTML = `
+                    <img id="elia5" class="img-thumbnail" src="assets/elia5.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text11" class="text-center" data-aos="fade-up"> AYANG CANDIDD MANISS BANGET KAYA PRINCESSSSS </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia5' || event.target && event.target.id === 'text11') {
+                container.innerHTML = `
+                    <img id="elia7" class="img-thumbnail" src="assets/elia7.jpeg" data-aos="flip-left" alt="" width="300px">
+                    <h5 id="text12" class="text-center" data-aos="fade-up"> LADIESS AND GENTELMEN... PLS WELLCOMEE, MY FAVORITE GIRLLLLLL <33 </h5>
+                `
+            }
+            if (event.target && event.target.id === 'elia7' || event.target && event.target.id === 'text12') {
+                container.innerHTML = `
+                    <img id="balon" class="img-thumbnail" src="assets/balon.gif" data-aos="flip-left" alt="">
+                    <h5 id="text13" class="text-center" data-aos="fade-up"> Happy Birthday Ayangg, I Will Always Love You... </h5>
+                `
+            }
+        })
+
+        function formatNumber(number) {
+            return number < 10 ? `0${number}` : number; 
+        }
+    </script>
+</body>
+</html>
