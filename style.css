@@ -1,0 +1,44 @@
+body {
+    /* background-color: #BBE9FF; */
+    background-color: #fff;
+    font-family: "Poppins", sans-serif;
+}
+
+#countdown-container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+    background-color: #F0A8D0;
+}
+
+.detail-countdown {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+#cat, #cat2 {
+    position: absolute;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+#cat {
+    left: 0;
+    top: 0;
+    animation-name: animation_cat1;
+}
+
+#cat2 {
+    right: 0;
+    top: 0;
+    animation-name: animation_cat2;
+}
+
+@keyframes animation_cat1 {
+    0% {left: 0;top:0;}
+    50% {left: 0;top:70%;}
+} 
+@keyframes animation_cat2 {
+    0% {right: 0;top:0;}
+    50% {right: 0;top:70%;}
+} 
